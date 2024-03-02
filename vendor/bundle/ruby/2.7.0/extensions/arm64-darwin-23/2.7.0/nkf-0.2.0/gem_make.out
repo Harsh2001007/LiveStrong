@@ -1,0 +1,15 @@
+current directory: /Users/harshsachan/Desktop/Livestrong-Project/LiveStrong/vendor/bundle/ruby/2.7.0/gems/nkf-0.2.0/ext/nkf
+/Users/harshsachan/.rbenv/versions/2.7.6/bin/ruby -I /Users/harshsachan/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20240226-26206-1ufbmvh.rb extconf.rb
+creating Makefile
+
+current directory: /Users/harshsachan/Desktop/Livestrong-Project/LiveStrong/vendor/bundle/ruby/2.7.0/gems/nkf-0.2.0/ext/nkf
+make "DESTDIR=" clean
+
+current directory: /Users/harshsachan/Desktop/Livestrong-Project/LiveStrong/vendor/bundle/ruby/2.7.0/gems/nkf-0.2.0/ext/nkf
+make "DESTDIR="
+compiling nkf.c
+linking shared-object nkf.bundle
+
+current directory: /Users/harshsachan/Desktop/Livestrong-Project/LiveStrong/vendor/bundle/ruby/2.7.0/gems/nkf-0.2.0/ext/nkf
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 nkf.bundle ./.gem.20240226-26206-xet7vt
