@@ -6,8 +6,10 @@ INJECTED from /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/android/app/
 INJECTED from /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/android/app/src/debug/AndroidManifest.xml:2:1-9:12
 INJECTED from /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/android/app/src/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:flipper-integration:0.73.4] /Users/harshsachan/.gradle/caches/transforms-3/1af6da98205d2b9904caa399785386e9/transformed/jetified-flipper-integration-0.73.4-debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-vector-icons] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-async-storage_async-storage] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-gesture-handler] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-linear-gradient] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-linear-gradient/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-reanimated] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-reanimated/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-safe-area-context] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-screens] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -179,10 +181,14 @@ INJECTED from /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/android/app/
 INJECTED from /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/android/app/src/debug/AndroidManifest.xml
 MERGED from [com.facebook.react:flipper-integration:0.73.4] /Users/harshsachan/.gradle/caches/transforms-3/1af6da98205d2b9904caa399785386e9/transformed/jetified-flipper-integration-0.73.4-debug/AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.react:flipper-integration:0.73.4] /Users/harshsachan/.gradle/caches/transforms-3/1af6da98205d2b9904caa399785386e9/transformed/jetified-flipper-integration-0.73.4-debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-vector-icons] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-vector-icons] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-async-storage_async-storage] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-async-storage_async-storage] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-linear-gradient] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-linear-gradient/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-linear-gradient] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-linear-gradient/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-reanimated] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-reanimated/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-reanimated] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-reanimated/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] /Users/harshsachan/Desktop/LiveStrong-test/LiveStrong/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44

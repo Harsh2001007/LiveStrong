@@ -2,243 +2,135 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  StatusBar,
-  TextInput,
-  Button,
-  Pressable,
-  TouchableOpacity,
   SafeAreaView,
+  StatusBar,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
-import {useState} from 'react';
 import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import HomepageCards from '../src/Components/HomepageCards';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import BMIResultView from '../src/Components/BMIResultView';
-import BMIupdatedMessage from '../src/Components/BMIupdatedMessage';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {create} from 'react-test-renderer';
-import {useNavigation} from '@react-navigation/native';
-import Mc from './MaintenaceCalaorie';
+const {width, height} = Dimensions.get('window');
 
-//  imports end here
 export default function Home({navigation}) {
-  const [bmiValue, setBmiValue] = useState('');
-  const [height, setheight] = useState('');
-  const [weight, setWeight] = useState('');
-  const [bmiType, setBmiType] = useState('none');
-  const [isVisibleBmiResult, setIsVisibleBmiResult] = useState(false);
-  const calculateBmi = () => {
-    const num1 = parseInt(height);
-    const num2 = parseInt(weight);
-    const heightTom = num1 / 100;
-    const result = num2 / heightTom ** 2;
-    console.log(result);
-    setBmiValue(result.toFixed(1).toString());
-    setIsVisibleBmiResult(true);
-
-    switch (true) {
-      case result < 18.5:
-        setBmiType('underweight');
-        break;
-
-      case result > 18.5 && result < 25:
-        setBmiType('Normal');
-        break;
-
-      case result > 25 && result < 30:
-        setBmiType('Overweight');
-        break;
-
-      case result > 30 && result < 40:
-        setBmiType('Obesity');
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const reset = () => {
-    setIsVisibleBmiResult(false);
-    setheight('');
-    setWeight('');
-  };
-
   return (
-    <>
-      <StatusBar
-        barStyle="dark-content"
-        hidden={true}
-        backgroundColor="black"
-        translucent={true}
-        networkActivityIndicatorVisible={false}
-      />
-      <SafeAreaView>
-        <View style={styles.mainContainer}>
-          <Text
-            style={{
-              // marginTop: hp(5),
-              color: 'black',
-              fontWeight: '800',
-              fontSize: hp(2),
-            }}>
-            BMI Calculator
-          </Text>
-          <View style={styles.innerContainer}>
-            <TextInput
-              style={styles.textInput1}
-              placeholder="Enter your Height(in cm)"
-              keyboardType="numeric"
-              value={height}
-              onChangeText={text => setheight(text)}
-            />
-            <TextInput
-              style={styles.textInput2}
-              placeholder="Enter your weight(in kg)"
-              keyboardType="numeric"
-              value={weight}
-              onChangeText={text => setWeight(text)}
-            />
-            <View>
-              <TouchableOpacity style={styles.submitBtn} onPress={calculateBmi}>
-                <Text
-                  style={{
-                    color: 'white',
-                    paddingVertical: hp(1),
-                    fontWeight: '800',
-                    letterSpacing: 2,
-                  }}>
-                  Calculate
-                </Text>
-              </TouchableOpacity>
+    <SafeAreaView style={{backgroundColor: '#2D3250'}}>
+      <StatusBar backgroundColor={'#2D3250'} />
+      <View style={styles.mainContainer}>
+        <View style={styles.header}>
+          <View style={styles.headerInner}>
+            <View style={styles.innerLeft}>
+              <Icon
+                name="gg-circle"
+                color="white"
+                size={40}
+                style={{marginLeft: 10}}></Icon>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  marginLeft: 10,
+                }}>
+                LIVE STRONG
+              </Text>
             </View>
-            {isVisibleBmiResult && (
-              <BMIResultView
-                bmiType={bmiType}
-                bmiValue={bmiValue}
-                resetMethod={reset}
-              />
-            )}
-            <View style={styles.otherScreenContainer}>
-              <TouchableOpacity onPress={() => navigation.navigate('MC')}>
-                <View style={styles.parentOne}>
-                  <Text style={styles.childText}>
-                    Maintenance Calories Calculator
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.parentTwo}>
-                  <Text style={styles.childText}>Workout Planner</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.parentThree}>
-                  <Text style={styles.childText}>Diet Planner test</Text>
-                </View>
-              </TouchableOpacity>
+            <View style={styles.innerRight}>
+              <Icon
+                name="heartbeat"
+                color="white"
+                size={40}
+                style={{marginLeft: 20}}></Icon>
+              <Icon name="circle-o-notch" color="white" size={40}></Icon>
+              <MaterialCommunityIcons
+                name="face-man"
+                color="white"
+                size={40}></MaterialCommunityIcons>
             </View>
           </View>
         </View>
-      </SafeAreaView>
-    </>
+        <View style={{height: height * 0.75}}>
+          <ScrollView
+            contentContainerStyle={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 10,
+            }}>
+            <HomepageCards
+              name="BMI CALCULATOR"
+              category="Health"
+              tagline="To Identify You"
+              description="Instant BMI calculator. Track, stay informed."
+              onPress={() => {
+                navigation.navigate('Bmi-page');
+              }}
+            />
+            <HomepageCards
+              name="DIET PLANNER"
+              category="Diet"
+              tagline="Track meals, stay healthy."
+              description="Plan meals, track intake, promote healthy eating."
+              onPress={() => {
+                navigation.navigate('Maintain-page');
+              }}
+            />
+            <HomepageCards
+              name="MAINTENANCE KCAL CALC"
+              category={'Health'}
+              tagline={'Plan balanced diet.'}
+              description={
+                'Calculate maintenance calories for balanced nutrition."'
+              }
+            />
+            <HomepageCards
+              name="MAINTENANCE"
+              category={'Health'}
+              tagline={'Plan balanced diet.'}
+              description={
+                'Calculate maintenance calories for balanced nutrition."'
+              }
+            />
+          </ScrollView>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#EEEDEB',
-    height: hp(100),
-    alignItems: 'center',
+    height: '90%',
   },
-  innerContainer: {
-    borderColor: 'red',
-    borderWidth: 1,
-    width: wp(85),
+  header: {
+    height: '10%',
+    width: '100%',
+  },
+  headerInner: {
     flex: 1,
+    flexDirection: 'row',
+  },
+  innerLeft: {
+    width: '60%',
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  textInput1: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    borderRadius: 6,
-    width: wp(70),
-    paddingHorizontal: hp(1),
-    height: hp(5),
-  },
-  textInput2: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    borderRadius: 6,
-    width: wp(70),
-    marginTop: hp(5),
-    paddingHorizontal: hp(1),
-    height: hp(5),
-  },
-  submitBtn: {
+  innerRight: {
+    width: '30%',
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: hp(3),
-    width: wp(40),
-    borderRadius: 6,
-    backgroundColor: '#80BCBD',
-    borderBottomWidth: 4,
-    borderRightWidth: 4,
-    borderColor: 'grey',
+    justifyContent: 'space-evenly',
   },
-  otherScreenContainer: {
-    marginTop: hp(2),
-  },
-  parentOne: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    justifyContent: 'center',
+  mainBody: {
     alignItems: 'center',
-    backgroundColor: '#C5EBAA',
-  },
-  parentTwo: {
+    borderColor: 'red',
     borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFBE98',
-  },
-  parentThree: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#E5D4FF',
-  },
-  childText: {
-    fontSize: 18,
-    color: 'black',
-    fontWeight: '600',
+    height: '100%',
   },
 });

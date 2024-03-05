@@ -26,13 +26,7 @@ const Mc = () => {
           <Text>Awesome 🎉</Text>
         </View>
       </BottomSheet> */}
-      <Image
-        source={{
-          uri: 'https://media.self.com/photos/6398b36c72eb56f726777d06/4:3/w_2560%2Cc_limit/weekly-workout-schedule.jpeg',
-        }}
-        height={56}
-        width={56}
-      />
+      <Text>MC page</Text>
     </View>
   );
 };
