@@ -2,256 +2,525 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  StatusBar,
-  TextInput,
-  Button,
-  Pressable,
-  TouchableOpacity,
   SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  keyboard,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
 } from 'react-native';
-import {useState} from 'react';
-import React from 'react';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import BMIResultView from '../src/Components/BMIResultView';
-import BMIupdatedMessage from '../src/Components/BMIupdatedMessage';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {create} from 'react-test-renderer';
-import {useNavigation} from '@react-navigation/native';
-import Mc from './MaintenaceCalaorie';
-import LinearGradient from 'react-native-linear-gradient';
+import React, {useRef, useState, useMemo} from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import BottomSheet from '@gorhom/bottom-sheet';
+import BmiBottomSheet from '../src/Components/BmiBottomSheet';
 
-//  imports end here
 export default function Bmi({navigation}) {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+
+  const [isMale, setIsMale] = useState(true);
+  const [isFemale, setIsFemale] = useState(false);
+  const [isKg, setIsKg] = useState(true);
+  const [isLbs, setIsLbs] = useState(false);
+  const [isMeter, setIsMeter] = useState(true);
+  const [isFeet, setIsFeet] = useState(false);
+  const [bmiWeight, setBmiWeight] = useState('');
+  const [bmiAge, setBmiAge] = useState('');
+  const [bmiHeight, setBmiHeight] = useState('');
+  const [bmiGoal, setBmiGoal] = useState('');
   const [bmiValue, setBmiValue] = useState('');
-  const [height, setheight] = useState('');
-  const [weight, setWeight] = useState('');
-  const [bmiType, setBmiType] = useState('none');
-  const [isVisibleBmiResult, setIsVisibleBmiResult] = useState(false);
-  const calculateBmi = () => {
-    const num1 = parseInt(height);
-    const num2 = parseInt(weight);
-    const heightTom = num1 / 100;
-    const result = num2 / heightTom ** 2;
+  const [bmiType, setBmiType] = useState('');
+  const [bmiDesc, setBmiDesc] = useState('');
+
+  const maleSelect = () => {
+    setIsMale(true);
+    setIsFemale(false);
+  };
+  const femaleSelect = () => {
+    setIsMale(false);
+    setIsFemale(true);
+  };
+
+  const kgSelect = () => {
+    setIsKg(true);
+    setIsLbs(false);
+  };
+
+  const lbsSelect = () => {
+    setIsLbs(true);
+    setIsKg(false);
+  };
+
+  const meterSelect = () => {
+    setIsMeter(true);
+    setIsFeet(false);
+  };
+
+  const feetSelect = () => {
+    setIsFeet(true);
+    setIsMeter(false);
+  };
+
+  const weightInputHandler = enteredText => {
+    setBmiWeight(enteredText);
+    console.log(bmiWeight);
+  };
+  const ageInputHandler = enteredText => {
+    setBmiAge(enteredText);
+    console.log(bmiAge);
+  };
+  const heightInputHandler = enteredText => {
+    setBmiHeight(enteredText);
+    console.log(bmiHeight);
+  };
+  const goalInputHandler = enteredText => {
+    setBmiGoal(enteredText);
+    console.log(bmiGoal);
+  };
+
+  const calcBmi = () => {
+    const num1 = parseFloat(bmiHeight);
+    const num2 = parseFloat(bmiWeight);
+    const result = num2 / num1 ** 2;
     console.log(result);
     setBmiValue(result.toFixed(1).toString());
-    setIsVisibleBmiResult(true);
+    setBottomSheetVisible(true);
 
     switch (true) {
       case result < 18.5:
-        setBmiType('underweight');
+        setBmiType('under weight');
+        setBmiDesc('Empower yourself to reach a healthy weight! 😓');
         break;
 
       case result > 18.5 && result < 25:
         setBmiType('Normal');
+        setBmiDesc('Congratulations on maintaining a healthy weight! 😀');
         break;
 
       case result > 25 && result < 30:
-        setBmiType('Overweight');
+        setBmiType('Over weight ');
+        setBmiDesc('Start your journey towards a fitter, lighter you! 😣');
         break;
 
       case result > 30 && result < 40:
         setBmiType('Obesity');
+        setBmiDesc("Let's rewrite the story of your health! 😵‍💫");
         break;
 
       default:
+        setBmiType('Enter valid Details');
         break;
     }
   };
 
-  const reset = () => {
-    setIsVisibleBmiResult(false);
-    setheight('');
-    setWeight('');
-  };
-
   return (
-    <>
-      <StatusBar
-        barStyle="dark-content"
-        hidden={true}
-        backgroundColor="black"
-        translucent={true}
-        networkActivityIndicatorVisible={false}
-      />
-      <LinearGradient colors={['blue', 'red']}>
-        <View style={styles.mainContainer}>
-          <Text
+    <SafeAreaView style={{backgroundColor: '#2D3250'}}>
+      <StatusBar backgroundColor={'orange'} />
+      <KeyboardAvoidingView behavior="position" style={{height: '100%'}}>
+        <View style={styles.header}>
+          <TouchableOpacity
             style={{
-              // marginTop: hp(5),
-              color: 'black',
-              fontWeight: '800',
-              fontSize: hp(2),
+              flexDirection: 'row',
+              alignItems: 'center',
+
+              width: '30%',
+              paddingHorizontal: 10,
+              paddingVertical: 8,
+            }}
+            onPress={() => {
+              navigation.goBack();
             }}>
+            <MaterialCommunityIcons
+              name="keyboard-backspace"
+              size={30}
+              color="white"
+            />
+            <Text style={{color: 'white', fontSize: 18, marginLeft: 6}}>
+              Back
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.cardView}>
+          <TouchableOpacity style={styles.dietCard}>
+            <View style={styles.cardLeft}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 22,
+                  fontWeight: 600,
+                  marginTop: 10,
+                }}>
+                Intersting For You:
+              </Text>
+              <Text style={{color: 'white', fontSize: 16, marginTop: 18}}>
+                Calorie Chart: Bulk or Cut?
+              </Text>
+              <Text
+                style={{
+                  color: '#27005D',
+                  fontWeight: 600,
+                  marginTop: 40,
+                  fontSize: 18,
+                }}>
+                Tap to Know More
+              </Text>
+            </View>
+            <View style={styles.cardRight}>
+              <Image
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  resizeMode: 'stretch',
+                  borderRadius: 20,
+                }}
+                source={{
+                  uri: 'https://img.freepik.com/premium-vector/hand-drawn-set-nutrition-detox-diet-food-doodle-weight-loss-healthy-food-nutrients-sketch-style_563464-286.jpg?w=360',
+                }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.bmiCalcView}>
+          <Text style={{fontSize: 28, color: 'white', marginLeft: 8}}>
             BMI Calculator
           </Text>
-          <View style={styles.innerContainer}>
-            <TextInput
-              style={styles.textInput1}
-              placeholder="Enter your Height(in cm)"
-              keyboardType="numeric"
-              value={height}
-              onChangeText={text => setheight(text)}
-            />
-            <TextInput
-              style={styles.textInput2}
-              placeholder="Enter your weight(in kg)"
-              keyboardType="numeric"
-              value={weight}
-              onChangeText={text => setWeight(text)}
-            />
-            <View>
-              <TouchableOpacity style={styles.submitBtn} onPress={calculateBmi}>
-                <Text
-                  style={{
-                    color: 'white',
-                    paddingVertical: hp(1),
-                    fontWeight: '800',
-                    letterSpacing: 2,
-                  }}>
-                  Calculate
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {isVisibleBmiResult && (
-              <BMIResultView
-                bmiType={bmiType}
-                bmiValue={bmiValue}
-                resetMethod={reset}
-              />
-            )}
-            <View style={styles.otherScreenContainer}>
-              <TouchableOpacity onPress={() => navigation.navigate('MC')}>
-                <View style={styles.parentOne}>
-                  <Text style={styles.childText}>
-                    Maintenance Calories Calculator
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.parentTwo}>
-                  <Text style={styles.childText}>Workout Planner</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.parentThree}>
-                  <Text style={styles.childText}>Diet Planner test</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.goBack();
-                }}
+          <View
+            style={{
+              height: '16%',
+
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              style={[
+                styles.genderSelect,
+                isMale && {backgroundColor: '#836FFF'},
+              ]}
+              onPress={maleSelect}>
+              <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                Male
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.genderSelect,
+                isFemale && {backgroundColor: '#836FFF'},
+              ]}
+              onPress={femaleSelect}>
+              <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                Female
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{height: '60%', paddingHorizontal: 10}}>
+            <View
+              style={{
+                height: '20%',
+                marginTop: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <View
                 style={{
-                  height: 40,
-                  width: 100,
-                  borderColor: 'black',
-                  borderWidth: 2,
+                  width: '30%',
+
+                  height: '100%',
+                  justifyContent: 'center',
                 }}>
-                <Text style={{fontSize: 25}}>Go Back</Text>
-              </TouchableOpacity>
+                <Text style={{color: 'white', fontSize: 24}}>Age:</Text>
+              </View>
+              <View
+                style={{
+                  width: '25%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <TextInput
+                  onChangeText={ageInputHandler}
+                  style={{
+                    borderBottomColor: 'white',
+                    borderBottomWidth: 1,
+                    marginLeft: 18,
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: 24,
+                  }}
+                />
+              </View>
+            </View>
+            <View
+              style={{
+                height: '20%',
+
+                marginTop: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <View
+                style={{
+                  width: '30%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 24}}>Weight:</Text>
+              </View>
+              <View
+                style={{
+                  width: '25%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <TextInput
+                  onChangeText={weightInputHandler}
+                  style={{
+                    borderBottomColor: 'white',
+                    borderBottomWidth: 1,
+                    marginLeft: 18,
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: 24,
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  width: '45%',
+                  marginLeft: 10,
+                  height: '100%',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isKg && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={kgSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    kg
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isLbs && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={lbsSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    lbs
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View
+              style={{
+                height: '20%',
+                marginTop: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <View
+                style={{
+                  width: '30%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 24}}>Height:</Text>
+              </View>
+              <View
+                style={{
+                  width: '25%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <TextInput
+                  onChangeText={heightInputHandler}
+                  style={{
+                    borderBottomColor: 'white',
+                    borderBottomWidth: 1,
+                    marginLeft: 18,
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: 24,
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  width: '45%',
+                  marginLeft: 10,
+                  height: '100%',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isMeter && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={meterSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    Meter
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isFeet && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={feetSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    Feet
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View
+              style={{
+                height: '20%',
+                marginTop: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}>
+              <View
+                style={{
+                  width: '30%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 24}}>Goal:</Text>
+              </View>
+              <View
+                style={{
+                  width: '25%',
+                  height: '100%',
+                  justifyContent: 'center',
+                }}>
+                <TextInput
+                  onChangeText={goalInputHandler}
+                  style={{
+                    borderBottomColor: 'white',
+                    borderBottomWidth: 1,
+                    marginLeft: 18,
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: 24,
+                  }}
+                />
+              </View>
+              <View
+                style={{
+                  width: '45%',
+                  height: '100%',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginLeft: 10,
+                }}>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isKg && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={kgSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    kg
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.genderSelect,
+                    isLbs && {backgroundColor: '#836FFF'},
+                  ]}
+                  onPress={lbsSelect}>
+                  <Text style={{color: 'white', fontSize: 20, fontWeight: 600}}>
+                    lbs
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
+          <View
+            style={{
+              height: '13%',
+              paddingHorizontal: 10,
+              paddingVertical: 6,
+            }}>
+            <TouchableOpacity
+              onPress={calcBmi}
+              style={{
+                backgroundColor: 'orange',
+                height: '100%',
+                borderRadius: 10,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: 'white', fontWeight: 600, fontSize: 28}}>
+                Calculate
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </LinearGradient>
-    </>
+        {bottomSheetVisible && (
+          <BmiBottomSheet
+            setBottomSheetVisible={setBottomSheetVisible}
+            bmiType={bmiType}
+            bmiDesc={bmiDesc}
+            bmiValue={bmiValue}
+          />
+        )}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#EEEDEB',
-    height: hp(100),
-    alignItems: 'center',
+  header: {
+    justifyContent: 'center',
   },
-  innerContainer: {
-    borderColor: 'red',
-    borderWidth: 1,
-    width: wp(85),
-    flex: 1,
-    alignItems: 'center',
-  },
-  textInput1: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    borderRadius: 6,
-    width: wp(70),
-    paddingHorizontal: hp(1),
-    height: hp(5),
-  },
-  textInput2: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    borderRadius: 6,
-    width: wp(70),
-    marginTop: hp(5),
-    paddingHorizontal: hp(1),
-    height: hp(5),
-  },
-  submitBtn: {
+  cardView: {
+    height: '30%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: hp(3),
-    width: wp(40),
-    borderRadius: 6,
-    backgroundColor: '#80BCBD',
-    borderBottomWidth: 4,
-    borderRightWidth: 4,
-    borderColor: 'grey',
   },
-  otherScreenContainer: {
-    marginTop: hp(2),
-  },
-  parentOne: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    justifyContent: 'center',
+  dietCard: {
+    height: '90%',
+    width: '93%',
+    backgroundColor: '#836FFF',
+    borderRadius: 16,
+    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#C5EBAA',
   },
-  parentTwo: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
-    justifyContent: 'center',
+  cardLeft: {
+    width: '58%',
+    height: '100%',
+    paddingHorizontal: 6,
+  },
+  cardRight: {
+    width: '40%',
+    height: '80%',
+  },
+  bmiCalcView: {
+    height: '66%',
+  },
+  genderSelect: {
+    backgroundColor: '#211951',
+    width: '45%',
+    height: '70%',
+    borderRadius: 50,
     alignItems: 'center',
-    backgroundColor: '#FFBE98',
-  },
-  parentThree: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginVertical: hp(1),
-    width: wp(80),
-    height: hp(7),
-    borderRadius: 6,
-    borderBottomWidth: 7,
-    borderRightWidth: 7,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#E5D4FF',
-  },
-  childText: {
-    fontSize: 18,
-    color: 'black',
-    fontWeight: '600',
+    marginHorizontal: 5,
   },
 });

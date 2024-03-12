@@ -68,6 +68,7 @@ export default function Home({navigation}) {
               description="Instant BMI calculator. Track, stay informed."
               onPress={() => {
                 navigation.navigate('Bmi-page');
+                console.log('pressed');
               }}
             />
             <HomepageCards
@@ -76,7 +77,7 @@ export default function Home({navigation}) {
               tagline="Track meals, stay healthy."
               description="Plan meals, track intake, promote healthy eating."
               onPress={() => {
-                navigation.navigate('Maintain-page');
+                navigation.navigate('Diet-page');
               }}
             />
             <HomepageCards
@@ -86,6 +87,9 @@ export default function Home({navigation}) {
               description={
                 'Calculate maintenance calories for balanced nutrition."'
               }
+              onPress={() => {
+                navigation.navigate('Maintain-page');
+              }}
             />
             <HomepageCards
               name="MAINTENANCE"

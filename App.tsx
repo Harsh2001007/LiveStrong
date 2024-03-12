@@ -9,6 +9,7 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import Onboarding from './Screens/Onboarding';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from './Screens/Home';
+import Diet from './Screens/Diet';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="Bmi-page" component={Bmi} />
               <Stack.Screen name="Maintain-page" component={Mc} />
+              <Stack.Screen name="Diet-page" component={Diet} />
             </Stack.Navigator>
           </NavigationContainer>
         </BottomSheetModalProvider>

@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 14,
     marginBottom: 24,
-    borderBottomWidth: 8,
-    borderRightWidth: 8,
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
   },
   topCardView: {
     flex: 1,
