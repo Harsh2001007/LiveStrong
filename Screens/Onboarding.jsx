@@ -25,7 +25,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {create} from 'react-test-renderer';
 import {useNavigation} from '@react-navigation/native';
-import Mc from './MaintenaceCalaorie';
+import Mc from './Login';
 
 const {width, height} = Dimensions.get('window');
 

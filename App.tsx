@@ -3,13 +3,16 @@ import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Bmi from './Screens/Bmi';
-import Mc from './Screens/MaintenaceCalaorie';
+import Login from './Screens/Login';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import Onboarding from './Screens/Onboarding';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from './Screens/Home';
 import Diet from './Screens/Diet';
+import SignupPage from './Screens/SignUp';
+import Otp from './Screens/Otp';
+import Profile from './Screens/Profile';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -43,8 +46,11 @@ export default function App() {
               )}
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="Bmi-page" component={Bmi} />
-              <Stack.Screen name="Maintain-page" component={Mc} />
+              <Stack.Screen name="Login-page" component={Login} />
               <Stack.Screen name="Diet-page" component={Diet} />
+              <Stack.Screen name="Signup-page" component={SignupPage} />
+              <Stack.Screen name="Otp-page" component={Otp} />
+              <Stack.Screen name="Profile-page" component={Profile} />
             </Stack.Navigator>
           </NavigationContainer>
         </BottomSheetModalProvider>

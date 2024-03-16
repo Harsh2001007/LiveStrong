@@ -88,7 +88,7 @@ export default function Home({navigation}) {
                 'Calculate maintenance calories for balanced nutrition."'
               }
               onPress={() => {
-                navigation.navigate('Maintain-page');
+                navigation.navigate('Login-page');
               }}
             />
             <HomepageCards
