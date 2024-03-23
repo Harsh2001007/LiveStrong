@@ -5,12 +5,16 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  StatusBar,
+  KeyboardAvoidingView,
+  Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import CheckBox from 'react-native-check-box';
 import LinearGradient from 'react-native-linear-gradient';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export default function SignupPage({navigation}) {
   const [isChecked, setIsChecked] = useState(false);
@@ -42,199 +46,198 @@ export default function SignupPage({navigation}) {
 
   return (
     <SafeAreaView style={{backgroundColor: 'black'}}>
-      <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <MaterialCommunityIcons
-            name="star-three-points-outline"
-            size={50}
-            color="white"
+      <StatusBar hidden={true} />
+      <View style={styles.headerContainer}>
+        <MaterialCommunityIcons
+          name="star-three-points-outline"
+          size={50}
+          color="white"
+        />
+        <View
+          style={{
+            borderBottomWidth: 2,
+            borderColor: 'white',
+            width: '80%',
+            height: '1%',
+            marginTop: '6%',
+          }}></View>
+      </View>
+      <View style={styles.loginTextContainer}>
+        <View style={styles.mainTextContainer}>
+          <Text style={styles.mainLoginText}>Create an account</Text>
+        </View>
+        <View style={styles.loginDescContainer}>
+          <Text style={styles.loginDesc}>
+            welcome back! Please enter your details.
+          </Text>
+        </View>
+      </View>
+      <View style={styles.emailFieldContainer}>
+        <View style={styles.emailTextContainer}>
+          <Text style={{color: 'white', fontSize: 20}}>Name</Text>
+        </View>
+        <View style={styles.emailInputContainer}>
+          <View style={styles.emailIconContainer}>
+            <MaterialCommunityIcons
+              name="email-outline"
+              size={30}
+              color="#7077A1"
+            />
+          </View>
+          <View style={styles.emailInputFieldContainer}>
+            <TextInput
+              placeholder="Enter your name"
+              style={styles.emailField}
+              placeholderTextColor={'grey'}
+              onChangeText={nameHandleChange}
+            />
+          </View>
+        </View>
+      </View>
+      <View style={styles.emailFieldContainer}>
+        <View style={styles.emailTextContainer}>
+          <Text style={{color: 'white', fontSize: 20}}>Email</Text>
+        </View>
+        <View style={styles.emailInputContainer}>
+          <View style={styles.emailIconContainer}>
+            <MaterialCommunityIcons
+              name="email-outline"
+              size={30}
+              color="#7077A1"
+            />
+          </View>
+          <View style={styles.emailInputFieldContainer}>
+            <TextInput
+              placeholder="Enter your email"
+              style={styles.emailField}
+              placeholderTextColor={'grey'}
+              onChangeText={emailHandleChange}
+            />
+          </View>
+        </View>
+      </View>
+      <View style={styles.passFieldContainer}>
+        <View style={styles.passTextContainer}>
+          <Text style={{color: 'white', fontSize: 20}}>Password</Text>
+        </View>
+        <View style={styles.passInputContainer}>
+          <View style={styles.passIconContainer}>
+            <MaterialCommunityIcons
+              name="email-outline"
+              size={30}
+              color="#7077A1"
+            />
+          </View>
+          <View style={styles.passInputFieldContainer}>
+            <TextInput
+              placeholder="Enter your password"
+              style={styles.passField}
+              placeholderTextColor={'grey'}
+              onChangeText={passHandleChange}
+            />
+          </View>
+        </View>
+      </View>
+      <View style={styles.loginFeaturesContainer}>
+        <View style={styles.chcekboxContainer}>
+          <CheckBox
+            style={{width: '100%', height: '70%'}}
+            checkBoxColor="white"
+            isChecked={isChecked}
+            onClick={() => setIsChecked(!isChecked)}
+            rightText="Remember Me!"
+            rightTextStyle={{color: 'white', fontSize: 18}}
           />
-          <View
+        </View>
+        <View style={styles.forgetContainer}>
+          <Text
             style={{
-              borderBottomWidth: 2,
-              borderColor: 'white',
-              width: '80%',
-              height: '1%',
-              marginTop: '6%',
-            }}></View>
+              color: 'white',
+              fontSize: 18,
+              fontWeight: 700,
+              marginLeft: 30,
+            }}>
+            Forget Password
+          </Text>
         </View>
-        <View style={styles.loginTextContainer}>
-          <View style={styles.mainTextContainer}>
-            <Text style={styles.mainLoginText}>Create an account</Text>
-          </View>
-          <View style={styles.loginDescContainer}>
-            <Text style={styles.loginDesc}>
-              welcome back! Please enter your details.
-            </Text>
-          </View>
-        </View>
-        <View style={styles.emailFieldContainer}>
-          <View style={styles.emailTextContainer}>
-            <Text style={{color: 'white', fontSize: 20}}>Name</Text>
-          </View>
-          <View style={styles.emailInputContainer}>
-            <View style={styles.emailIconContainer}>
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={30}
-                color="#7077A1"
-              />
-            </View>
-            <View style={styles.emailInputFieldContainer}>
-              <TextInput
-                placeholder="Enter your name"
-                style={styles.emailField}
-                placeholderTextColor={'grey'}
-                onChangeText={nameHandleChange}
-              />
-            </View>
-          </View>
-        </View>
-        <View style={styles.emailFieldContainer}>
-          <View style={styles.emailTextContainer}>
-            <Text style={{color: 'white', fontSize: 20}}>Email</Text>
-          </View>
-          <View style={styles.emailInputContainer}>
-            <View style={styles.emailIconContainer}>
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={30}
-                color="#7077A1"
-              />
-            </View>
-            <View style={styles.emailInputFieldContainer}>
-              <TextInput
-                placeholder="Enter your email"
-                style={styles.emailField}
-                placeholderTextColor={'grey'}
-                onChangeText={emailHandleChange}
-              />
-            </View>
-          </View>
-        </View>
-        <View style={styles.passFieldContainer}>
-          <View style={styles.passTextContainer}>
-            <Text style={{color: 'white', fontSize: 20}}>Password</Text>
-          </View>
-          <View style={styles.passInputContainer}>
-            <View style={styles.passIconContainer}>
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={30}
-                color="#7077A1"
-              />
-            </View>
-            <View style={styles.passInputFieldContainer}>
-              <TextInput
-                placeholder="Enter your password"
-                style={styles.passField}
-                placeholderTextColor={'grey'}
-                onChangeText={passHandleChange}
-              />
-            </View>
-          </View>
-        </View>
-        <View style={styles.loginFeaturesContainer}>
-          <View style={styles.chcekboxContainer}>
-            <CheckBox
-              style={{width: '100%', height: '70%'}}
-              checkBoxColor="white"
-              isChecked={isChecked}
-              onClick={() => setIsChecked(!isChecked)}
-              rightText="Remember Me!"
-              rightTextStyle={{color: 'white', fontSize: 18}}
-            />
-          </View>
-          <View style={styles.forgetContainer}>
+      </View>
+      <View style={styles.impCTAs}>
+        <LinearGradient
+          colors={['#C94C47', '#813E86']}
+          style={styles.loginBtn}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}>
+          <TouchableOpacity
+            style={{
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onPress={handleSignUp}>
             <Text
               style={{
                 color: 'white',
-                fontSize: 18,
-                fontWeight: 700,
-                marginLeft: 30,
+                fontSize: 20,
+                fontWeight: '600',
               }}>
-              Forget Password
+              Sign Up
             </Text>
-          </View>
-        </View>
-        <View style={styles.impCTAs}>
-          <LinearGradient
-            colors={['#C94C47', '#813E86']}
-            style={styles.loginBtn}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
-            <TouchableOpacity
-              style={{
-                height: '100%',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onPress={handleSignUp}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 20,
-                  fontWeight: '600',
-                }}>
-                Sign Up
-              </Text>
-            </TouchableOpacity>
-          </LinearGradient>
+          </TouchableOpacity>
+        </LinearGradient>
 
-          <TouchableOpacity style={styles.googleLogin}>
-            <Icon
-              name="google"
-              size={30}
-              color="#891652"
-              style={{marginRight: 18}}
-            />
+        <TouchableOpacity style={styles.googleLogin}>
+          <Icon
+            name="google"
+            size={30}
+            color="#891652"
+            style={{marginRight: 18}}
+          />
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              fontWeight: '600',
+            }}>
+            Log In With Google
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.facebookLogin}>
+          <Icon
+            name="facebook-f"
+            color="#98ABEE"
+            size={30}
+            style={{marginRight: 18}}
+          />
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              fontWeight: '600',
+            }}>
+            Log In With Facebook
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.signupAsk}>
+        <View style={styles.signUP}>
+          <Text style={{color: 'grey', fontSize: 18, fontWeight: 600}}>
+            Already have an account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Login-page');
+            }}>
             <Text
               style={{
                 color: 'white',
                 fontSize: 20,
-                fontWeight: '600',
+                fontWeight: 600,
+                marginLeft: 8,
               }}>
-              Log In With Google
+              Log in
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.facebookLogin}>
-            <Icon
-              name="facebook-f"
-              color="#98ABEE"
-              size={30}
-              style={{marginRight: 18}}
-            />
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 20,
-                fontWeight: '600',
-              }}>
-              Log In With Facebook
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.signupAsk}>
-          <View style={styles.signUP}>
-            <Text style={{color: 'grey', fontSize: 18, fontWeight: 600}}>
-              Already have an account?
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Login-page');
-              }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 20,
-                  fontWeight: 600,
-                  marginLeft: 8,
-                }}>
-                Log in
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -294,6 +297,7 @@ const styles = StyleSheet.create({
     width: '85%',
     marginLeft: 8,
     justifyContent: 'center',
+    height: '100%',
   },
   passField: {
     fontSize: 20,
@@ -327,12 +331,12 @@ const styles = StyleSheet.create({
   },
   passField: {
     fontSize: 20,
-    height: '50%',
+    height: '100%',
     color: 'white',
   },
   emailField: {
     fontSize: 20,
-    height: '50%',
+    height: '100%',
     color: 'white',
   },
   loginFeaturesContainer: {
@@ -391,4 +395,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  keyboardContainer: {},
 });

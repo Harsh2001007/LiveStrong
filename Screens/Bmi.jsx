@@ -119,8 +119,9 @@ export default function Bmi({navigation}) {
 
   return (
     <SafeAreaView style={{backgroundColor: '#2D3250'}}>
-      <StatusBar backgroundColor={'orange'} />
-      <KeyboardAvoidingView behavior="position" style={{height: '100%'}}>
+      <StatusBar backgroundColor={'#2D3250'} />
+      {/* <KeyboardAvoidingView behavior="position" style={{height: '100%'}}> */}
+      <View>
         <View style={styles.header}>
           <TouchableOpacity
             style={{
@@ -480,7 +481,8 @@ export default function Bmi({navigation}) {
             bmiValue={bmiValue}
           />
         )}
-      </KeyboardAvoidingView>
+        {/* </KeyboardAvoidingView> */}
+      </View>
     </SafeAreaView>
   );
 }

@@ -1,2 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-LiveStrong/Pods-LiveStrong-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuthCore_Privacy.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher_Core_Privacy.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle

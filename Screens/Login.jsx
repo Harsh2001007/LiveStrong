@@ -5,6 +5,8 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  StatusBar,
+  KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,7 +19,9 @@ export default function Login({navigation}) {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
+    // <KeyboardAvoidingView behavior="position">
     <SafeAreaView style={{backgroundColor: 'black'}}>
+      <StatusBar hidden={true} />
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
           <MaterialCommunityIcons
@@ -191,6 +195,7 @@ export default function Login({navigation}) {
         </View>
       </View>
     </SafeAreaView>
+    // </KeyboardAvoidingView>
   );
 }
 
@@ -250,7 +255,7 @@ const styles = StyleSheet.create({
   },
   passField: {
     fontSize: 20,
-    height: '50%',
+    height: '100%',
     color: 'white',
   },
   passFieldContainer: {
@@ -270,7 +275,6 @@ const styles = StyleSheet.create({
   },
   passIconContainer: {
     justifyContent: 'center',
-
     width: '10%',
   },
   passInputFieldContainer: {
@@ -280,12 +284,12 @@ const styles = StyleSheet.create({
   },
   passField: {
     fontSize: 20,
-    height: '50%',
+    height: '100%',
     color: 'white',
   },
   emailField: {
     fontSize: 20,
-    height: '50%',
+    height: '100%',
     color: 'white',
   },
   loginFeaturesContainer: {

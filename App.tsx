@@ -13,6 +13,8 @@ import Diet from './Screens/Diet';
 import SignupPage from './Screens/SignUp';
 import Otp from './Screens/Otp';
 import Profile from './Screens/Profile';
+import Firebase from './Screens/FireBase';
+import RealTimeDB from './Screens/RealTimeDB';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -51,6 +53,8 @@ export default function App() {
               <Stack.Screen name="Signup-page" component={SignupPage} />
               <Stack.Screen name="Otp-page" component={Otp} />
               <Stack.Screen name="Profile-page" component={Profile} />
+              <Stack.Screen name="Firebase-page" component={Firebase} />
+              <Stack.Screen name="Realtimedb-page" component={RealTimeDB} />
             </Stack.Navigator>
           </NavigationContainer>
         </BottomSheetModalProvider>

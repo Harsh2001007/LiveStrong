@@ -6,6 +6,7 @@ import {
   StatusBar,
   Dimensions,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -25,11 +26,16 @@ export default function Home({navigation}) {
         <View style={styles.header}>
           <View style={styles.headerInner}>
             <View style={styles.innerLeft}>
-              <Icon
-                name="gg-circle"
-                color="white"
-                size={40}
-                style={{marginLeft: 10}}></Icon>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Firebase-page');
+                }}>
+                <Icon
+                  name="gg-circle"
+                  color="white"
+                  size={40}
+                  style={{marginLeft: 10}}></Icon>
+              </TouchableOpacity>
               <Text
                 style={{
                   color: 'white',
@@ -41,16 +47,26 @@ export default function Home({navigation}) {
               </Text>
             </View>
             <View style={styles.innerRight}>
-              <Icon
-                name="heartbeat"
-                color="white"
-                size={40}
-                style={{marginLeft: 20}}></Icon>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Realtimedb-page');
+                }}>
+                <Icon
+                  name="heartbeat"
+                  color="white"
+                  size={40}
+                  style={{marginLeft: 20}}></Icon>
+              </TouchableOpacity>
               <Icon name="circle-o-notch" color="white" size={40}></Icon>
-              <MaterialCommunityIcons
-                name="face-man"
-                color="white"
-                size={40}></MaterialCommunityIcons>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Login-page');
+                }}>
+                <MaterialCommunityIcons
+                  name="face-man"
+                  color="white"
+                  size={40}></MaterialCommunityIcons>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -87,9 +103,6 @@ export default function Home({navigation}) {
               description={
                 'Calculate maintenance calories for balanced nutrition."'
               }
-              onPress={() => {
-                navigation.navigate('Login-page');
-              }}
             />
             <HomepageCards
               name="MAINTENANCE"

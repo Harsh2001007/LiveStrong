@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "613542146861",
+    "project_id": "testlivestrong",
+    "storage_bucket": "testlivestrong.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613542146861:android:eccf0d226130ce34a919a4",
+        "android_client_info": {
+          "package_name": "com.livestrong"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1HDZcS3o07VYaIQJh5rCMhNNiPtinuFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
